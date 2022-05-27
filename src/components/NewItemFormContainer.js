@@ -8,7 +8,7 @@ import { addNewItem } from '../store/items/actions';
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
-      onSubmit: (name, price) => dispatch(addNewItem({ name, price }))
+      onSubmit: (name, price) => addNewItem({ name, price })
     },
     dispatch
   );
