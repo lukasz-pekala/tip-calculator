@@ -19,6 +19,7 @@ export const NewItemForm = ({ onSubmit, dispatch }) => {
     }
 
     dispatch({ type: 'ITEM_ADDED', payload: { name, price } });
+
     setName('');
     setPrice(0);
   };
