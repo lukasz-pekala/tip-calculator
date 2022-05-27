@@ -18,7 +18,7 @@ export const NewItemForm = ({ onSubmit, dispatch }) => {
       onSubmit(name, price);
     }
 
-    dispatch({ type: 'ITEM_ADDED', payload: { name, price } });
+    // dispatch({ type: 'ITEM_ADDED', payload: { name, price } });
 
     setName('');
     setPrice(0);
