@@ -12,6 +12,10 @@ export const reducer = (state = initialItems, action) => {
     return [...state, item];
   }
 
+  if (action.type === 'ITEM_REMOVED') {
+    return state.filter((item) => item.uuid !== action.payload.uuid);
+  }
+
   return state;
 };
 

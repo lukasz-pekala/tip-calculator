@@ -9,3 +9,12 @@ export const addNewItem = ({ name, price }) => {
     }
   };
 };
+
+export const removeItem = (uuid) => {
+  return {
+    type: 'ITEM_REMOVED',
+    payload: {
+      uuid
+    }
+  };
+};
