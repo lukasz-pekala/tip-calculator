@@ -1,7 +1,7 @@
 import { Box, Button, Input, Label } from '@twilio-paste/core';
 import { useState } from 'react';
 
-export const NewItemForm = ({ onSubmit }) => {
+export const NewItemForm = ({ onSubmit, dispatch }) => {
   const [name, setName] = useState('');
   const [price, setPrice] = useState(0);
 
@@ -18,6 +18,7 @@ export const NewItemForm = ({ onSubmit }) => {
       onSubmit(name, price);
     }
 
+    dispatch({ type: 'ITEM_ADDED', payload: { name, price } });
     setName('');
     setPrice(0);
   };
