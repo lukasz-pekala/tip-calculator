@@ -3,12 +3,15 @@ import { Summary } from '../components/Summary';
 
 const mapStateToProps = (state) => {
   const items = state.items;
+
+  // Solution 1:
   //   let subtotal = 0;
 
   //   for (const item of items) {
   //     subtotal += item.price * item.quantity;
   //   }
 
+  // Solution 2:
   const subtotal = items.reduce((acc, item) => {
     return acc + item.price * item.quantity;
   }, 0);
