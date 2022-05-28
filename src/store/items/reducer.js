@@ -16,6 +16,26 @@ export const reducer = (state = initialItems, action) => {
     return state.filter((item) => item.uuid !== action.payload.uuid);
   }
 
+  if (action.type === 'ITEM_PRICE_UPDATED') {
+    return state.map((item) => {
+      if (item.uuid === action.payload.uuid) {
+        return { ...item, price: action.payload.price };
+      }
+
+      return item;
+    });
+  }
+
+  if (action.type === 'UPDATE_QUANTITY') {
+    return state.map((item) => {
+      if (item.uuid === action.payload.uuid) {
+        return { ...item, quantity: action.payload.quantity };
+      }
+
+      return item;
+    });
+  }
+
   return state;
 };
 
