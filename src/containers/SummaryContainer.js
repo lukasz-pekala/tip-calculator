@@ -3,11 +3,15 @@ import { Summary } from '../components/Summary';
 
 const mapStateToProps = (state) => {
   const items = state.items;
-  let subtotal = 0;
+  //   let subtotal = 0;
 
-  for (const item of items) {
-    subtotal += item.price * item.quantity;
-  }
+  //   for (const item of items) {
+  //     subtotal += item.price * item.quantity;
+  //   }
+
+  const subtotal = items.reduce((acc, item) => {
+    return acc + item.price * item.quantity;
+  }, 0);
 
   const tipAmount = subtotal * (state.tipPercentage / 100);
 
