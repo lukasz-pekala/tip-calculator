@@ -1,3 +1,4 @@
+import { produce } from 'immer';
 let id = 1;
 
 export const initialItems = [
@@ -7,9 +8,16 @@ export const initialItems = [
 
 export const reducer = (state = initialItems, action) => {
   if (action.type === 'ITEM_ADDED') {
-    const item = { uuid: id++, quantity: 1, ...action.payload };
+    // Solution 1:
+    // const item = { uuid: id++, quantity: 1, ...action.payload };
 
-    return [...state, item];
+    // return [...state, item];
+
+    //Solution 2: (with Immer)
+    return produce(state, (draft) => {
+      const item = state.find((item) => item.uuid === action.payload.uuid);
+      item.price = parseInt(action.payload.price);
+    });
   }
 
   if (action.type === 'ITEM_REMOVED') {
@@ -17,12 +25,19 @@ export const reducer = (state = initialItems, action) => {
   }
 
   if (action.type === 'ITEM_PRICE_UPDATED') {
+    // Solution 1:
     return state.map((item) => {
-      if (item.uuid === action.payload.uuid) {
-        return { ...item, price: action.payload.price };
-      }
+      // if (item.uuid === action.payload.uuid) {
+      //   return { ...item, price: action.payload.price };
+      // }
 
-      return item;
+      // return item;
+
+      //Solution 2: (with Immer)
+      return produce(item, (draft) => {
+        const item = draft.find((item) => item.uuid === action.payload.uuid);
+        item.price = parseInt(action.payload.price, 10);
+      });
     });
   }
 
